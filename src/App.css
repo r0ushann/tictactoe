@@ -2,8 +2,18 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  color: green;
+  border: medium;
+  font-weight: bold;
+
+ 
 }
 
 .board-container {
-  margin: 20px;
+  margin: 50px;
+  font-weight:bold;
+  display:flex;
+  justify-content: center;
+  align-items:center;
 }
+

@@ -23,14 +23,15 @@ const Board = () => {
         return state[a];
       }
     }
-
-    return false;
+    return null; // Change to null to indicate no winner
   };
 
   const isWinner = checkWinner();
 
-  const handleClick = (index: any) => {
-    if (state[index] !== null) {
+  const isDraw = state.every((square) => square !== null) && !isWinner;
+
+  const handleClick = (index) => {
+    if (state[index] !== null || isWinner) {
       return;
     }
     const copyState = [...state];
@@ -41,35 +42,42 @@ const Board = () => {
 
   const handleReset = () => {
     setState(Array(9).fill(null));
+    setIsXTurn(true);
   };
 
   return (
     <div className="board-container">
-      {isWinner ? (
-        <>
-          {isWinner} won the game{" "}
-          <button onClick={handleReset}>Play Again</button>
-        </>
-      ) : (
-        <>
-          <h4>Player {isXTurn ? "X" : "O"} please move</h4>
-          <div className="board-row">
-            <Square onClick={() => handleClick(0)} value={state[0]} />
-            <Square onClick={() => handleClick(1)} value={state[1]} />
-            <Square onClick={() => handleClick(2)} value={state[2]} />
-          </div>
-          <div className="board-row">
-            <Square onClick={() => handleClick(3)} value={state[3]} />
-            <Square onClick={() => handleClick(4)} value={state[4]} />
-            <Square onClick={() => handleClick(5)} value={state[5]} />
-          </div>
-          <div className="board-row">
-            <Square onClick={() => handleClick(6)} value={state[6]} />
-            <Square onClick={() => handleClick(7)} value={state[7]} />
-            <Square onClick={() => handleClick(8)} value={state[8]} />
-          </div>
-        </>
-      )}
+      <h1 className="text">
+        {isWinner ? (
+          <>
+            {isWinner} won the game!{" "}
+            <button className="button" onClick={handleReset}>
+              Play Again
+            </button>
+          </>
+        ) : isDraw ? (
+          "The match is a draw!" // Display draw message
+        ) : (
+          <>
+            <h4>Player {isXTurn ? "X" : "O"}: your turn!</h4>
+            <div className="board-row">
+              <Square onClick={() => handleClick(0)} value={state[0]} />
+              <Square onClick={() => handleClick(1)} value={state[1]} />
+              <Square onClick={() => handleClick(2)} value={state[2]} />
+            </div>
+            <div className="board-row">
+              <Square onClick={() => handleClick(3)} value={state[3]} />
+              <Square onClick={() => handleClick(4)} value={state[4]} />
+              <Square onClick={() => handleClick(5)} value={state[5]} />
+            </div>
+            <div className="board-row">
+              <Square onClick={() => handleClick(6)} value={state[6]} />
+              <Square onClick={() => handleClick(7)} value={state[7]} />
+              <Square onClick={() => handleClick(8)} value={state[8]} />
+            </div>
+          </>
+        )}
+      </h1>
     </div>
   );
 };
