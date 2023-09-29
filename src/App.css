@@ -17,3 +17,15 @@
   align-items:center;
 }
 
+.button{
+  padding: 5px;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  color: green;
+  background: white;
+  text-decoration: bold;
+  cursor: pointer;
+}
+

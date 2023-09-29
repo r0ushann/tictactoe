@@ -56,7 +56,13 @@ const Board = () => {
             </button>
           </>
         ) : isDraw ? (
-          "The match is a draw!" // Display draw message
+          <>
+            "The Match is A Draw!"
+            <button className="button" onClick={handleReset}>
+              Play Again
+            </button>
+          </>
+      
         ) : (
           <>
             <h4>Player {isXTurn ? "X" : "O"}: your turn!</h4>
