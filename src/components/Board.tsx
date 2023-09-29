@@ -29,7 +29,7 @@ const Board = () => {
 
   const isWinner = checkWinner();
 
-  const handleClick = (index) => {
+  const handleClick = (index: any) => {
     if (state[index] !== null) {
       return;
     }
